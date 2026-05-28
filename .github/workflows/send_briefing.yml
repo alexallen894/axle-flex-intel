@@ -66,6 +66,9 @@ jobs:
                   print(f"Email sent. Resend ID: {result.get('id')}")
           except urllib.error.HTTPError as e:
               body = e.read().decode()
-              print(f"Failed: HTTP {e.code} — {body}", file=sys.stderr)
+              print(f"Failed: HTTP {e.code} — {body}")
+              sys.exit(1)
+          except Exception as e:
+              print(f"Failed: {e}")
               sys.exit(1)
           EOF
