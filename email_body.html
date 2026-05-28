@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Axle Flex Intel | 28 May 2026</title>
+<style>
+  body { margin: 0; padding: 0; background: #f4f6fb; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #222; }
+  .wrapper { max-width: 680px; margin: 32px auto; background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
+  .header { background: #1a1a2e; padding: 32px 36px 24px; }
+  .header .logo { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; color: #4f8ef7; text-transform: uppercase; margin-bottom: 8px; }
+  .header h1 { margin: 0; font-size: 22px; color: #ffffff; line-height: 1.3; }
+  .header .date-bar { margin-top: 10px; font-size: 13px; color: #8899bb; }
+  .header .hook { margin-top: 12px; font-size: 14px; color: #c5d8ff; font-style: italic; border-left: 3px solid #4f8ef7; padding-left: 12px; }
+  .body { padding: 28px 36px; }
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #4f8ef7; text-transform: uppercase; border-bottom: 2px solid #e8edf7; padding-bottom: 6px; margin-bottom: 14px; }
+  .section h2 { font-size: 17px; color: #1a1a2e; margin: 0 0 12px; font-weight: 700; }
+  .stat-row { display: flex; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .stat-box { background: #f0f5ff; border-radius: 7px; padding: 12px 16px; flex: 1; min-width: 120px; }
+  .stat-box .label { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: #7a8fbb; text-transform: uppercase; }
+  .stat-box .value { font-size: 22px; font-weight: 700; color: #1a1a2e; line-height: 1.2; margin-top: 2px; }
+  .stat-box .unit { font-size: 12px; color: #7a8fbb; }
+  .stat-box.alert .value { color: #c0392b; }
+  .stat-box.positive .value { color: #27ae60; }
+  table.bmu-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 12px; }
+  table.bmu-table th { text-align: left; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #7a8fbb; padding: 4px 8px; border-bottom: 1px solid #e8edf7; }
+  table.bmu-table td { padding: 7px 8px; border-bottom: 1px solid #f0f5ff; color: #1a1a2e; }
+  table.bmu-table tr:last-child td { border-bottom: none; }
+  .axle-signal { background: #f0f5ff; border-left: 4px solid #4f8ef7; border-radius: 0 6px 6px 0; padding: 10px 14px; margin-top: 12px; font-size: 13px; color: #1a1a2e; }
+  .axle-signal strong { color: #4f8ef7; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  ul.bullets { padding-left: 18px; margin: 8px 0; }
+  ul.bullets li { font-size: 13px; color: #333; margin-bottom: 7px; line-height: 1.5; }
+  .news-item { border-bottom: 1px solid #f0f5ff; padding: 10px 0; }
+  .news-item:last-child { border-bottom: none; }
+  .news-item .headline { font-size: 14px; font-weight: 600; color: #1a1a2e; margin-bottom: 3px; }
+  .news-item .source { font-size: 11px; color: #7a8fbb; font-style: italic; margin-bottom: 4px; }
+  .news-item .significance { font-size: 13px; color: #444; }
+  .bottom-line { background: #1a1a2e; border-radius: 8px; padding: 20px 22px; margin-top: 4px; }
+  .bottom-line .title { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #4f8ef7; text-transform: uppercase; margin-bottom: 12px; }
+  .bottom-line ul { padding-left: 18px; margin: 0 0 16px; }
+  .bottom-line ul li { font-size: 13px; color: #c5d8ff; margin-bottom: 8px; line-height: 1.5; }
+  .bottom-line .question { background: rgba(79,142,247,0.15); border-radius: 6px; padding: 12px 14px; font-size: 13px; color: #ffffff; }
+  .bottom-line .question strong { color: #4f8ef7; display: block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; }
+  .fuel-bar { margin-bottom: 6px; }
+  .fuel-bar .fuel-label { font-size: 12px; color: #555; display: flex; justify-content: space-between; margin-bottom: 2px; }
+  .fuel-bar-track { height: 10px; background: #e8edf7; border-radius: 5px; overflow: hidden; }
+  .fuel-bar-fill { height: 10px; border-radius: 5px; }
+  .footer { background: #f4f6fb; padding: 18px 36px; text-align: center; font-size: 11px; color: #aaa; border-top: 1px solid #e8edf7; }
+  .divider { height: 1px; background: #e8edf7; margin: 28px 0; }
+  .pill { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 20px; }
+  .pill.red { background: #fdecea; color: #c0392b; }
+  .pill.green { background: #eafaf1; color: #27ae60; }
+  .pill.amber { background: #fef9e7; color: #d68910; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">⚡ Axle Flex Intel</div>
+    <h1>Daily Market Briefing &mdash; 28 May 2026</h1>
+    <div class="date-bar">Generated 28 May 2026 &bull; Data: Elexon BMRS / NESO</div>
+    <div class="hook">Wind at 45% of system &mdash; but 61% of settlement periods are tight-margin. Flexibility has never had a clearer commercial case.</div>
+  </div>
+
+  <div class="body">
+
+    <!-- SECTION 1: CURTAILMENT WATCH -->
+    <div class="section">
+      <div class="section-title">Section 1</div>
+      <h2>Curtailment Watch</h2>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="label">Wind Curtailment</div>
+          <div class="value">722.5</div>
+          <div class="unit">MWh estimated (27 May)</div>
+        </div>
+        <div class="stat-box alert">
+          <div class="label">Total System Curtailment</div>
+          <div class="value">15,530</div>
+          <div class="unit">MWh (all technologies)</div>
+        </div>
+        <div class="stat-box">
+          <div class="label">Wind Turn-Down Events</div>
+          <div class="value">23</div>
+          <div class="unit">SO-instructed (328 total)</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; color:#444; margin:12px 0;">Yesterday's wind curtailment of <strong>722.5 MWh</strong> is relatively modest in absolute terms, but tells a sharp story in its concentration: three BMUs from a single wind farm complex account for virtually all of it.</p>
+
+      <table class="bmu-table">
+        <thead>
+          <tr>
+            <th>BMU</th>
+            <th>MW Reduction</th>
+            <th>Probable Asset</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>MOWEO-3</strong></td>
+            <td><span class="pill red">−869 MW</span></td>
+            <td>Moray East Offshore Wind</td>
+          </tr>
+          <tr>
+            <td><strong>MOWEO-1</strong></td>
+            <td><span class="pill amber">−539 MW</span></td>
+            <td>Moray East Offshore Wind</td>
+          </tr>
+          <tr>
+            <td><strong>MOWEO-2</strong></td>
+            <td><span class="pill green">−37 MW</span></td>
+            <td>Moray East Offshore Wind</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:13px; color:#444; margin:8px 0;">Curtailment is structurally concentrated at Scottish offshore assets — a pattern that has been building all year (Q1 2026: 3.6 TWh constrained). The 15,530 MWh all-technology curtailment is a sign of real-time system stress, even on a day with no negative prices.</p>
+
+      <div class="axle-signal">
+        <strong>Axle Signal</strong>
+        Every MW of Scottish offshore curtailment is a direct revenue leak that an energy supplier's flexibility portfolio &mdash; managed via Axle's software &mdash; can partially monetise through BM participation. Rising constraint costs (£1.9bn in 2024/25, projected £4&ndash;8bn by 2030) harden the ROI case at every supplier conversation.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECTION 2: GENERATION & PRICE SNAPSHOT -->
+    <div class="section">
+      <div class="section-title">Section 2</div>
+      <h2>Generation &amp; Price Snapshot</h2>
+
+      <div class="stat-row">
+        <div class="stat-box positive">
+          <div class="label">Wind Share</div>
+          <div class="value">45.0%</div>
+          <div class="unit">9,656 MW avg</div>
+        </div>
+        <div class="stat-box">
+          <div class="label">CCGT Share</div>
+          <div class="value">16.8%</div>
+          <div class="unit">3,607 MW avg</div>
+        </div>
+        <div class="stat-box">
+          <div class="label">Nuclear Share</div>
+          <div class="value">10.6%</div>
+          <div class="unit">2,267 MW avg</div>
+        </div>
+        <div class="stat-box">
+          <div class="label">Total System</div>
+          <div class="value">21,476</div>
+          <div class="unit">MW average</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; color:#444; margin:12px 0 6px;"><strong>Fuel Mix Today (28 May) — top contributors:</strong></p>
+      <div class="fuel-bar">
+        <div class="fuel-label"><span>Wind</span><span>45.0%</span></div>
+        <div class="fuel-bar-track"><div class="fuel-bar-fill" style="width:45%; background:#4f8ef7;"></div></div>
+      </div>
+      <div class="fuel-bar">
+        <div class="fuel-label"><span>CCGT</span><span>16.8%</span></div>
+        <div class="fuel-bar-track"><div class="fuel-bar-fill" style="width:16.8%; background:#e67e22;"></div></div>
+      </div>
+      <div class="fuel-bar">
+        <div class="fuel-label"><span>Nuclear</span><span>10.6%</span></div>
+        <div class="fuel-bar-track"><div class="fuel-bar-fill" style="width:10.6%; background:#8e44ad;"></div></div>
+      </div>
+      <div class="fuel-bar">
+        <div class="fuel-label"><span>Biomass</span><span>7.4%</span></div>
+        <div class="fuel-bar-track"><div class="fuel-bar-fill" style="width:7.4%; background:#27ae60;"></div></div>
+      </div>
+      <div class="fuel-bar">
+        <div class="fuel-label"><span>Coal</span><span>0.0%</span></div>
+        <div class="fuel-bar-track"><div class="fuel-bar-fill" style="width:0.1%; background:#888;"></div></div>
+      </div>
+
+      <p style="font-size:11px; color:#aaa; margin:4px 0 14px;">Interconnector flows: France +1,380 MW, NSL +1,036 MW, IFA2 +968 MW importing; Greenlink and Ireland exporting.</p>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="label">Price Min</div>
+          <div class="value">£0.00</div>
+          <div class="unit">/MWh (27 May)</div>
+        </div>
+        <div class="stat-box alert">
+          <div class="label">Price Max</div>
+          <div class="value">£123.19</div>
+          <div class="unit">/MWh (27 May)</div>
+        </div>
+        <div class="stat-box">
+          <div class="label">Price Avg</div>
+          <div class="value">£50.89</div>
+          <div class="unit">/MWh (27 May)</div>
+        </div>
+        <div class="stat-box positive">
+          <div class="label">Negative Periods</div>
+          <div class="value">0</div>
+          <div class="unit">of 96 half-hours</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; color:#444; margin:8px 0;">A £123.19 intraday peak against a £0 floor is a <strong>£123/MWh spread in a single day</strong>. Zero negative price periods means the wind surplus was absorbed (via interconnectors) rather than destroying value — but only just.</p>
+
+      <div class="axle-signal">
+        <strong>Axle Signal</strong>
+        A £123/MWh intraday swing is a live demo of why suppliers with no flex capability are bleeding margin. In a sales call today, show this chart: "your customers are buying at the peak — our software turns those spikes into revenue."
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECTION 3: ESO DEMAND FORECAST -->
+    <div class="section">
+      <div class="section-title">Section 3</div>
+      <h2>ESO Demand Forecast</h2>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="label">TSDF Day-Ahead Min</div>
+          <div class="value">18,200</div>
+          <div class="unit">MW</div>
+        </div>
+        <div class="stat-box">
+          <div class="label">TSDF Day-Ahead Max</div>
+          <div class="value">30,962</div>
+          <div class="unit">MW</div>
+        </div>
+        <div class="stat-box">
+          <div class="label">NDFD Range</div>
+          <div class="value">23.9&ndash;28.0</div>
+          <div class="unit">GW day-ahead</div>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box alert">
+          <div class="label">Tight Margin Periods (&lt;500 MW)</div>
+          <div class="value">814</div>
+          <div class="unit">of 1,332 total (61%)</div>
+        </div>
+        <div class="stat-box alert">
+          <div class="label">Avg System Margin</div>
+          <div class="value">&minus;745</div>
+          <div class="unit">MW (avg imbalance)</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px; color:#444; margin:8px 0;"><strong>61% of settlement periods today are running below the 500 MW headroom threshold.</strong> The average system margin of &minus;745 MW (meaning NESO is drawing more from the BM than it's injecting) reflects a system that is simultaneously managing surplus wind and demand ramps — a classic flexibility crunch. The TSDF range of nearly 13 GW between trough and peak underlines the dispatch challenge.</p>
+
+      <div class="axle-signal">
+        <strong>Axle Signal</strong>
+        With 814 tight-margin periods, NESO is in the BM continuously. Every supplier with a managed flex portfolio is generating BM income right now. Suppliers without one are paying BSUoS charges instead. This is the gap Axle closes.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECTION 4: GLOBAL VPP LANDSCAPE -->
+    <div class="section">
+      <div class="section-title">Section 4</div>
+      <h2>Global VPP Landscape — Where Axle Sits</h2>
+
+      <ul class="bullets">
+        <li><strong>Octopus/Kraken (UK) — 2 GW, 500k devices:</strong> Kraken's VPP crossed 2 GW in July 2025, making it the world's largest residential VPP. It integrates EVs, heat pumps, and batteries via Kraken's platform, monetised through DFS and time-of-use tariffs. Scale: ~100 suppliers in 17 countries using Kraken tech.</li>
+        <li><strong>Next Kraftwerke (Europe) — 15.5 GW pooled:</strong> Europe's largest VPP aggregator, active across Germany, France, Benelux. Operates across 14 countries with full BM/intraday market access. RWE-owned since 2021. Charges aggregation fees typically in the range of 10–20% of revenue share.</li>
+        <li><strong>Enpal/Entrix Flexa (Germany/Europe) — targeting 1 GW by end-2026:</strong> Planned Europe's largest residential solar+battery+EV VPP, launched H2 2024. Enphase also scaled its European VPP footprint more than 10x in the past year, showing the rooftop layer is now commercially viable at scale.</li>
+        <li><strong>US/Australia (EV-centric):</strong> ev.energy received an Innovate UK grant to scale the UK's first EV-only VPP. PG&amp;E and Tesla run US demand response VPPs with &gt;1 GW of battery capacity. Australia's AEMO VPP trials have moved into commercial BAU with aggregators like Simply Energy and AGL.</li>
+      </ul>
+
+      <p style="font-size:13px; color:#444; margin:8px 0 4px;"><strong>Where Axle has the edge:</strong> Aggregators like Next Kraftwerke and Kraken own the customer relationship and take 10–20% of revenue — they are Axle's customers' competitors. Axle's software-for-suppliers model gives energy suppliers the tools to run their own VPP in-house, keeping margin on-book rather than surrendering it to an aggregator. As MHHS (Market-Wide Half-Hourly Settlement) completes by end-2026 and half-hourly data becomes mandatory, suppliers that haven't built flex capability in-house will face a structural cost disadvantage Axle solves directly.</p>
+
+      <div class="axle-signal">
+        <strong>Axle Signal</strong>
+        The VPP market will be £7.7bn globally in 2026 and growing at 22% CAGR. Axle is not competing with aggregators — it is the infrastructure layer that makes suppliers aggregator-independent. That is a category-defining position.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECTION 5: MARKET NEWS -->
+    <div class="section">
+      <div class="section-title">Section 5</div>
+      <h2>Market News</h2>
+
+      <div class="news-item">
+        <div class="headline">DFS Expands to Bi-Directional Flexibility &amp; 0.1 MW Threshold</div>
+        <div class="source">NESO / Ofgem &bull; April 2026</div>
+        <div class="significance">From April 2026, the Demand Flexibility Service now rewards both demand turn-down and demand turn-up, and the eligibility floor dropped from 1 MW to 0.1 MW. <strong>Axle significance:</strong> 10x more assets are now DFS-eligible — suppliers using Axle can immediately monetise a wider portfolio without new infrastructure.</div>
+      </div>
+
+      <div class="news-item">
+        <div class="headline">MHHS (Market-Wide Half-Hourly Settlement) on Track for End-2026 Completion</div>
+        <div class="source">Elexon / Energy UK</div>
+        <div class="significance">Supplier migration is underway; the leading large supplier is approaching the 50% mark. Full MHHS will make half-hourly settlement mandatory, directly incentivising time-of-use tariffs and flex platforms. <strong>Axle significance:</strong> every supplier on the migration path needs a flex software stack — the pipeline is the entire market.</div>
+      </div>
+
+      <div class="news-item">
+        <div class="headline">NESO &amp; Ofgem Clean Flexibility Roadmap: 55 GW Target by 2030</div>
+        <div class="source">NESO / Ofgem &bull; July 2025</div>
+        <div class="significance">The roadmap published last July targets 55.2 GW of flexibility by 2030 and 204 GW by 2050. Common dispatch API and Flexify programme also under development for 2026–28. <strong>Axle significance:</strong> a government-mandated market architecture is being built around exactly the problem Axle solves. Cite this in every enterprise supplier meeting.</div>
+      </div>
+
+      <div class="news-item">
+        <div class="headline">Transmission Constraint Costs Hit £1.9bn in 2024/25 — Projected £4–8bn by 2030</div>
+        <div class="source">UKERC / RenewableUK &bull; 2025&ndash;26</div>
+        <div class="significance">Constraint costs now make up 71% of total GB balancing costs, up from 44% in 2022/23. Scottish offshore wind is the primary driver. <strong>Axle significance:</strong> curtailment cost is rising faster than renewable build — flexibility software that helps suppliers participate in constraint management is directly in the line of value.</div>
+      </div>
+
+      <div class="news-item">
+        <div class="headline">Enphase Scales European VPP Presence 10x Year-on-Year</div>
+        <div class="source">Enphase Energy &bull; 2025&ndash;26</div>
+        <div class="significance">Enphase expanded participating VPP deployments by more than tenfold across Europe in the past year. The rooftop solar/battery VPP layer is now commercially proven at scale. <strong>Axle significance:</strong> suppliers who are not yet aggregating distributed rooftop assets will be disintermediated by hardware vendors. Axle's platform gives them the tools to compete.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECTION 6: BOTTOM LINE -->
+    <div class="section">
+      <div class="section-title">Section 6</div>
+      <h2>Bottom Line</h2>
+
+      <div class="bottom-line">
+        <div class="title">What Axle's Sales Team Must Know Today</div>
+        <ul>
+          <li>Wind hit 45% of the GB system today and 61% of settlement periods are running below 500 MW margin — NESO is in the BM constantly, and suppliers without flex software are spectators paying for the privilege.</li>
+          <li>A £123/MWh intraday price swing with an average of £50.89/MWh is the commercial case in one number: the difference between a supplier with Axle and one without is the ability to capture — not just absorb — that volatility.</li>
+          <li>DFS is now bi-directional, MHHS completes by year-end, and the NESO roadmap mandates 55 GW of flexibility by 2030. Every large UK energy supplier is now inside the transformation window — and Axle is the software that runs it in-house.</li>
+        </ul>
+        <div class="question">
+          <strong>Sharp Question to Ask a Prospect Today</strong>
+          "With DFS now open to assets as small as 0.1 MW and settlement becoming half-hourly by December, what does your current stack look like for aggregating and dispatching your customers' flex assets — and how much of the £50+/MWh intraday spread are you capturing today?"
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Axle Flex Intel &bull; Powered by Elexon BMRS, NESO, and live market intelligence &bull; 28 May 2026<br>
+    For alex.allen894@gmail.com — internal use only
+  </div>
+
+</div>
+</body>
+</html>
